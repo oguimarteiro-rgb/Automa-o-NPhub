@@ -1,11 +1,23 @@
-# MazyOS — Sistema operacional do negócio
+# NP Hub OS — Sistema operacional da NP Hub
 
-Sua empresa roda em cima desse arquivo. Aqui ficam as regras de operação
-do MazyOS — como o Claude lê o contexto, aprende com correções, mantém
+A NP Hub roda em cima desse arquivo. Aqui ficam as regras de operação
+do NP Hub OS — como o Claude lê o contexto, aprende com correções, mantém
 tudo atualizado e cria skills novas conforme a operação evolui.
 
-Esse arquivo é editável. Quando o `/instalar` rodar, ele complementa o
-final dessa página com as regras específicas do seu negócio.
+**NP Hub** — marketing, tecnologia e automação para o mercado imobiliário.
+Tagline: "Pensamos o problema. Criamos o caminho."
+
+---
+
+## Estrutura do repositório
+
+- `_memoria/` — cérebro do negócio (empresa, estratégia, preferências)
+- `identidade/` — rosto da marca: `design-guide.md`, `logo/`, `artes/`
+- `site/` — site institucional (Next.js) + `site/.design-sync/` (sync com o Claude Design)
+- `site-legado/` — versão estática antiga do site (arquivo)
+- `.claude/skills/` — skills que viram `/comandos`
+- `templates/` — modelos pra criar skills/perfis novos
+- `marketing/`, `saidas/`, `dados/`, `scripts/` — produção, outputs, entradas, utilitários
 
 ---
 

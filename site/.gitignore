@@ -1,0 +1,39 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+
+# production
+build
+dist
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env
+.env*.local
+.env
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts.bak
+
+# design-sync — material de máquina (NÃO versionar; regenerado a cada sync)
+.ds-sync/
+ds-bundle/
+.design-sync/.cache/
+.design-sync/node_modules
+.design-sync/fonts-src/gf.css

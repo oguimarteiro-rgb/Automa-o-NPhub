@@ -1,0 +1,30 @@
+{
+  "projectId": "ed702a63-7ce4-4ce5-af60-4b7026bbc293",
+  "shape": "package",
+  "pkg": "np-hub-site",
+  "globalName": "NPHub",
+  "entry": ".design-sync/entry.tsx",
+  "srcDir": "components",
+  "cssEntry": ".design-sync/.cache/compiled.css",
+  "extraFonts": ".design-sync/fonts-src/brand-fonts.css",
+  "docsDir": ".design-sync/docs",
+  "readmeHeader": ".design-sync/conventions.md",
+  "componentSrcMap": {
+    "BrandSymbol": "components/BrandSymbol.tsx",
+    "BrandSymbolBuild": "components/BrandSymbol.tsx",
+    "MagneticButton": "components/MagneticButton.tsx",
+    "EditorialHeader": "components/EditorialHeader.tsx",
+    "WordReveal": "components/WordReveal.tsx",
+    "Loader": "components/Loader.tsx",
+    "ContactForm": "components/ContactForm.tsx"
+  },
+  "dtsPropsFor": {
+    "BrandSymbol": "  /** Rendered width & height in px. Default 240. */\n  size?: number;\n  /** Rotate the graphite circle continuously. Default true. */\n  animateRotation?: boolean;\n  /** Seconds per full rotation. Default 60. */\n  rotationDuration?: number;\n  /** Pulse the olive center dot. Default true. */\n  pulseDot?: boolean;\n  className?: string;\n  /** Accessible label for the SVG. Default \"Símbolo NP Hub\". */\n  ariaLabel?: string;",
+    "BrandSymbolBuild": "  /** Rendered width & height in px. Default 180. */\n  size?: number;\n  className?: string;",
+    "MagneticButton": "  /** Pointer-follow strength, 0–1. Default 0.35. */\n  strength?: number;\n  className?: string;\n  children?: React.ReactNode;\n  type?: \"button\" | \"submit\" | \"reset\";\n  disabled?: boolean;\n  onClick?: React.MouseEventHandler<HTMLButtonElement>;",
+    "EditorialHeader": "  /** Left-hand editorial credit, e.g. \"NP HUB — MÉTODO\". */\n  edition: string;\n  /** Right-hand index label, e.g. \"Nº 001\". */\n  index: string;",
+    "WordReveal": "  /** Text revealed word by word on mount. */\n  text: string;\n  className?: string;\n  /** Class applied to each animated word span. */\n  wordClassName?: string;\n  /** Delay before the first word, in seconds. Default 0. */\n  delay?: number;\n  /** Per-word stagger, in seconds. Default 0.08. */\n  stagger?: number;\n  /** Element tag to render. Default \"span\". */\n  as?: \"h1\" | \"h2\" | \"h3\" | \"p\" | \"span\";\n  /** Map of lowercase word → extra className, to accent specific words. */\n  highlights?: Record<string, string>;",
+    "Loader": "  /** Full-screen brand loading overlay — takes no props. Shows the NP Hub build animation, then fades out after ~1.9s. */",
+    "ContactForm": "  /** No props — a self-contained contact form (nome, empresa, email, mensagem) with inline zod validation and a mock submit. */"
+  }
+}

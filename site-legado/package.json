@@ -1,0 +1,9 @@
+{
+  "name": "np-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site institucional NP Hub — marketing, tecnologia e automação.",
+  "scripts": {
+    "dev": "npx serve@14 -l 3000 ."
+  }
+}

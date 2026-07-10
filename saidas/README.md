@@ -1,4 +1,4 @@
-# saidas/ — outputs gerais do MazyOS
+# saidas/ — outputs gerais do NP Hub OS
 
 Pasta pra qualquer output que não é marketing puro (não cabe em `marketing/`).
 

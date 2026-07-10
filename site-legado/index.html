@@ -1,0 +1,3539 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#F5F1E8" />
+    <title>NP Hub — Pensamos o problema. Criamos o caminho.</title>
+    <meta
+      name="description"
+      content="Marketing, tecnologia e automação para o mercado imobiliário brasileiro. Estratégia, conteúdo, automação e performance trabalhando juntos."
+    />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --cream: #f5f1e8;
+        --graphite: #1f1f1f;
+        --graphite-soft: #4a4a4a;
+        --olive: #6b7a3f;
+        --navy: #1e3a5f;
+        --brown: #5c4632;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--graphite);
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        font-size: clamp(1rem, 0.9rem + 0.3vw, 1.125rem);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.12  0 0 0 0 0.12  0 0 0 0.18 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+        background-size: 240px 240px;
+        opacity: 0.035;
+        pointer-events: none;
+        z-index: 1;
+        mix-blend-mode: multiply;
+      }
+
+      ::selection {
+        background: var(--olive);
+        color: var(--cream);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* Layout */
+      .container {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 clamp(1.5rem, 4vw, 4rem);
+        position: relative;
+        z-index: 2;
+      }
+
+      .container-tight {
+        max-width: 1080px;
+      }
+
+      /* Typography helpers */
+      .eyebrow {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+      }
+
+      .section__head .eyebrow:first-child {
+        color: var(--navy);
+      }
+
+      .serif {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.04;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      /* Hairline divider */
+      .rule {
+        height: 1px;
+        width: 100%;
+        background: var(--navy);
+        opacity: 0.32;
+      }
+
+      /* ------------------------------------------------------------ */
+      /* NAV                                                          */
+      /* ------------------------------------------------------------ */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        background: rgba(245, 241, 232, 0);
+        backdrop-filter: blur(0);
+        -webkit-backdrop-filter: blur(0);
+        border-bottom: 1px solid transparent;
+        transition: background 500ms var(--ease),
+          backdrop-filter 500ms var(--ease),
+          border-color 500ms var(--ease);
+      }
+
+      .nav.is-scrolled {
+        background: rgba(245, 241, 232, 0.92);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom-color: rgba(30, 58, 95, 0.18);
+      }
+
+      .nav__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        height: 72px;
+        padding: 0 clamp(1.5rem, 4vw, 4rem);
+      }
+
+      .nav__brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .nav__brand svg {
+        width: 38px;
+        height: 38px;
+      }
+
+      .nav__brand-name {
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .nav__menu {
+        display: none;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        gap: clamp(1.25rem, 2.4vw, 2.4rem);
+      }
+
+      @media (min-width: 860px) {
+        .nav__menu {
+          display: flex;
+        }
+      }
+
+      .nav__link {
+        position: relative;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--graphite);
+        padding: 6px 0;
+      }
+
+      .nav__link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: var(--olive);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 500ms var(--ease);
+      }
+
+      .nav__link:hover::after,
+      .nav__link.is-active::after {
+        transform: scaleX(1);
+      }
+
+      .nav__cta {
+        display: none;
+        font-size: 0.74rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--cream);
+        background: var(--olive);
+        padding: 0.6rem 1.1rem;
+        border-radius: 3px;
+        transition: background 500ms var(--ease);
+      }
+
+      @media (min-width: 720px) {
+        .nav__cta {
+          display: inline-flex;
+        }
+      }
+
+      .nav__cta:hover {
+        background: var(--graphite);
+      }
+
+      /* Mobile menu toggle */
+      .nav__toggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 32px;
+        height: 32px;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      @media (min-width: 860px) {
+        .nav__toggle {
+          display: none;
+        }
+      }
+
+      .nav__toggle span {
+        display: block;
+        width: 24px;
+        height: 1px;
+        background: var(--graphite);
+        margin-left: auto;
+        transition: transform 350ms var(--ease), opacity 250ms var(--ease);
+      }
+
+      .nav__toggle span:nth-child(2) {
+        width: 16px;
+      }
+
+      .nav.is-open .nav__toggle span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+        width: 24px;
+      }
+      .nav.is-open .nav__toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav.is-open .nav__toggle span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+
+      .nav__mobile {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid rgba(30, 58, 95, 0.18);
+        padding: 1.5rem clamp(1.5rem, 4vw, 4rem) 2rem;
+        display: none;
+      }
+
+      .nav.is-open .nav__mobile {
+        display: block;
+      }
+
+      .nav__mobile ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav__mobile a,
+      .nav__mobile .nav__mobile-cta {
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .nav__mobile .nav__mobile-cta {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 0;
+        color: var(--olive);
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        text-align: left;
+      }
+
+      /* ------------------------------------------------------------ */
+      /* HERO                                                         */
+      /* ------------------------------------------------------------ */
+      .hero {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 120px;
+        padding-bottom: 56px;
+      }
+
+      .hero__top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+      }
+
+      .hero__top .eyebrow:last-child {
+        text-align: right;
+      }
+
+      .hero__body-wrap {
+        padding: clamp(3rem, 8vw, 6rem) 0;
+      }
+
+      .hero__title {
+        font-size: clamp(3.4rem, 11vw, 8.5rem);
+        line-height: 1.02;
+        letter-spacing: -0.025em;
+      }
+
+      .hero__title span {
+        display: block;
+        overflow: hidden;
+      }
+
+      .hero__title em {
+        display: block;
+        font-style: italic;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400;
+        font-size: 1.1em;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--graphite);
+      }
+
+      .hero__title strong {
+        display: block;
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        line-height: 1;
+        color: var(--graphite);
+      }
+
+      .reveal-line {
+        will-change: transform, opacity;
+        transform: translateY(110%);
+        opacity: 0;
+        transition: transform 1000ms var(--ease), opacity 1000ms var(--ease);
+      }
+
+      .reveal-line.is-shown {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .hero__lead {
+        max-width: 640px;
+        font-size: clamp(1rem, 1.2vw, 1.18rem);
+        color: var(--graphite-soft);
+        line-height: 1.6;
+      }
+
+      .hero__scroll {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+        color: var(--graphite-soft);
+      }
+
+      .hero__scroll em {
+        font-family: "Inter", sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      .hero__scroll-line {
+        display: block;
+        width: 1px;
+        height: 36px;
+        background: var(--graphite-soft);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero__scroll-line::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: 0;
+        right: 0;
+        height: 50%;
+        background: var(--graphite);
+        animation: scroll-tick 2.6s var(--ease) infinite;
+      }
+
+      @keyframes scroll-tick {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(200%);
+        }
+        100% {
+          transform: translateY(200%);
+        }
+      }
+
+      /* ------------------------------------------------------------ */
+      /* HERO — symbol composition                                    */
+      /* ------------------------------------------------------------ */
+      .hero__body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: clamp(2.5rem, 5vw, 4rem);
+        align-items: center;
+      }
+
+      @media (min-width: 960px) {
+        .hero__body {
+          grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+          gap: clamp(2rem, 5vw, 5rem);
+          max-width: 1320px;
+        }
+      }
+
+      .hero__text {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+      }
+
+      .hero__symbol-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 460px;
+        aspect-ratio: 1;
+        margin: 0 auto;
+        justify-self: center;
+      }
+
+      @media (min-width: 960px) {
+        .hero__symbol-wrap {
+          justify-self: end;
+          max-width: 440px;
+        }
+      }
+
+      .hero__symbol {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+      }
+
+      .hero__symbol-ring,
+      .hero__symbol-ring-dashed {
+        fill: none;
+        stroke: var(--navy);
+      }
+
+      .hero__symbol-ring {
+        stroke-opacity: 0.28;
+      }
+
+      .hero__symbol-ring-dashed {
+        stroke-opacity: 0.18;
+        stroke-dasharray: 1.6 4;
+      }
+
+      .hero__symbol-tick {
+        fill: var(--navy);
+        fill-opacity: 0.45;
+      }
+
+      .hero__symbol-arc {
+        fill: none;
+        stroke: var(--navy);
+        stroke-opacity: 0.65;
+        stroke-linecap: round;
+        transform-origin: 300px 300px;
+        animation: arc-spin 14s linear infinite;
+      }
+
+      .hero__symbol-mark {
+        transform-origin: 300px 300px;
+        transform-box: view-box;
+        animation: mark-spin 60s linear infinite;
+      }
+
+      .hero__symbol-dot {
+        animation: dot-glow 3.8s ease-in-out infinite;
+        will-change: filter;
+      }
+
+      /* Make sure the glow can extend beyond the nested SVG bounds */
+      .hero__symbol-mark,
+      .hero__symbol-mark > g {
+        overflow: visible;
+      }
+
+      .hero__symbol-coord {
+        font-family: "Inter", sans-serif;
+        font-size: 9px;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        fill: var(--brown);
+        text-transform: uppercase;
+      }
+
+      @keyframes arc-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes mark-spin {
+        to { transform: rotate(360deg); }
+      }
+
+      @keyframes dot-glow {
+        0%, 100% {
+          filter:
+            drop-shadow(0 0 6px rgba(107, 122, 63, 0.05))
+            drop-shadow(0 0 14px rgba(107, 122, 63, 0));
+        }
+        50% {
+          filter:
+            drop-shadow(0 0 28px rgba(107, 122, 63, 0.45))
+            drop-shadow(0 0 64px rgba(107, 122, 63, 0.22));
+        }
+      }
+
+      /* ------------------------------------------------------------ */
+      /* LOADER                                                       */
+      /* ------------------------------------------------------------ */
+      .loader {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: var(--cream);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 2rem;
+        transition: opacity 600ms var(--ease), visibility 0s linear 700ms;
+      }
+
+      .loader.is-done {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader__mark {
+        width: clamp(120px, 22vw, 180px);
+        height: clamp(120px, 22vw, 180px);
+        transform-origin: center;
+        animation: loader-spin 1.4s cubic-bezier(0.6, -0.18, 0.4, 1.2) 1
+          forwards;
+      }
+
+      .loader__ring,
+      .loader__paisley,
+      .loader__dot {
+        transform-origin: 540px 540px;
+        transform-box: view-box;
+      }
+
+      .loader__ring {
+        animation: loader-bounce 800ms cubic-bezier(0.34, 1.56, 0.64, 1) 80ms
+          both;
+      }
+
+      .loader__paisley {
+        animation: loader-bounce 750ms cubic-bezier(0.34, 1.56, 0.64, 1) 380ms
+          both;
+      }
+
+      .loader__dot {
+        animation: loader-dot-pop 700ms cubic-bezier(0.34, 1.56, 0.64, 1)
+          760ms both;
+      }
+
+      .loader__label {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.7rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+        opacity: 0;
+        animation: loader-label-in 600ms var(--ease) 1100ms forwards;
+      }
+
+      @keyframes loader-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(540deg); }
+      }
+
+      @keyframes loader-bounce {
+        0% { transform: scale(0); opacity: 0; }
+        70% { transform: scale(1.12); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      @keyframes loader-dot-pop {
+        0%   { transform: scale(0);    opacity: 0; }
+        55%  { transform: scale(1.35); opacity: 1; }
+        80%  { transform: scale(0.92); opacity: 1; }
+        100% { transform: scale(1);    opacity: 1; }
+      }
+
+      @keyframes loader-label-in {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Lock body while loader is up */
+      body.is-loading {
+        overflow: hidden;
+      }
+
+      /* ------------------------------------------------------------ */
+      /* SECTIONS                                                     */
+      /* ------------------------------------------------------------ */
+      .section {
+        padding: clamp(6rem, 12vw, 10rem) 0;
+        position: relative;
+      }
+
+      .section--alt {
+        background: var(--cream);
+        border-top: 1px solid rgba(30, 58, 95, 0.18);
+        border-bottom: 1px solid rgba(30, 58, 95, 0.18);
+      }
+
+      .section__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        margin-bottom: clamp(3rem, 7vw, 5rem);
+      }
+
+      .section__title {
+        max-width: 22ch;
+        font-family: "Inter", sans-serif;
+        font-style: normal;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: var(--graphite);
+        margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+      }
+
+      .section__title em:not(.serif-em) {
+        font-family: "Inter", sans-serif;
+        font-style: normal;
+        font-weight: 900;
+        color: var(--graphite);
+      }
+
+      /* Pontual editorial pause — used inside Inter Black titles for one accent word */
+      .section__title .serif-em,
+      .serif-em {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 1.06em;
+        letter-spacing: -0.015em;
+        color: var(--graphite);
+      }
+
+      /* Olive semantic accent — single keyword per body paragraph, very rare */
+      .olive-accent {
+        color: var(--olive);
+        font-weight: inherit;
+      }
+
+      /* Reveal helper */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+        will-change: opacity, transform;
+      }
+      .reveal.is-shown {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Manifesto */
+      .manifesto__body {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.4rem;
+        font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+        line-height: 1.7;
+        color: var(--graphite);
+      }
+
+      @media (min-width: 880px) {
+        .manifesto__body {
+          grid-template-columns: 1fr 1fr;
+          gap: 3.5rem;
+        }
+      }
+
+      .manifesto__close {
+        margin-top: clamp(3rem, 6vw, 5rem);
+        text-align: center;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1.4rem, 2.4vw, 2rem);
+        color: var(--graphite);
+        max-width: 38ch;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.4;
+      }
+
+      .manifesto__close em {
+        color: var(--graphite);
+        font-style: italic;
+      }
+
+      /* Capabilities */
+      .caps {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      @media (min-width: 760px) {
+        .caps {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .cap {
+        position: relative;
+        padding: clamp(2.4rem, 4vw, 3.5rem);
+        border-top: 1px solid rgba(30, 58, 95, 0.22);
+        display: flex;
+        flex-direction: column;
+        gap: 1.3rem;
+      }
+
+      .cap::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 2px;
+        height: 100%;
+        background: var(--brown);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 500ms var(--ease);
+      }
+
+      .cap:hover::before {
+        transform: scaleY(1);
+      }
+
+      @media (min-width: 760px) {
+        .cap:nth-child(odd) {
+          border-right: 1px solid rgba(30, 58, 95, 0.22);
+        }
+      }
+
+      .cap__num {
+        font-family: "Inter", sans-serif;
+        font-weight: 900;
+        font-size: clamp(3.6rem, 6vw, 5.2rem);
+        color: var(--graphite);
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+      }
+
+      .cap__name {
+        font-size: clamp(1.15rem, 1.4vw, 1.3rem);
+        font-weight: 700;
+      }
+
+      .cap__name span {
+        color: var(--brown);
+        font-weight: 500;
+        margin-right: 0.5rem;
+      }
+
+      .cap__desc {
+        font-size: clamp(0.98rem, 1.1vw, 1.05rem);
+        color: var(--graphite-soft);
+        line-height: 1.65;
+        max-width: 42ch;
+      }
+
+      /* Client ideal */
+      .ideal {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      @media (min-width: 880px) {
+        .ideal {
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+        }
+      }
+
+      .ideal__col h3 {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+        letter-spacing: 0.04em;
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(30, 58, 95, 0.32);
+      }
+
+      .ideal__col--yes h3 {
+        color: var(--graphite);
+      }
+
+      .ideal__col--no h3 {
+        color: var(--graphite-soft);
+      }
+
+      .ideal__col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1.1rem;
+      }
+
+      .ideal__col li {
+        display: flex;
+        gap: 1rem;
+        font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+        line-height: 1.55;
+        color: var(--graphite);
+        padding: 0.2rem 0;
+      }
+
+      .ideal__col li::before {
+        content: "—";
+        color: var(--graphite-soft);
+        flex-shrink: 0;
+      }
+
+      .ideal__col--no li::before {
+        content: "×";
+        color: var(--graphite-soft);
+        font-weight: 500;
+      }
+
+      .ideal__close {
+        margin-top: clamp(3.5rem, 6vw, 5rem);
+        text-align: center;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-style: italic;
+        font-size: clamp(1.25rem, 2vw, 1.7rem);
+        color: var(--graphite);
+      }
+
+      /* Principles */
+      .principles {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .principle {
+        display: grid;
+        grid-template-columns: 70px 1fr;
+        gap: clamp(1.5rem, 3vw, 2.8rem);
+        padding: clamp(2.2rem, 4vw, 3rem) 0;
+        border-top: 1px solid rgba(30, 58, 95, 0.22);
+        align-items: baseline;
+      }
+
+      @media (min-width: 760px) {
+        .principle {
+          grid-template-columns: 130px 1fr;
+        }
+      }
+
+      .principle:last-child {
+        border-bottom: 1px solid rgba(30, 58, 95, 0.22);
+      }
+
+      .principle__num {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: clamp(1.5rem, 2.2vw, 2rem);
+        color: var(--graphite-soft);
+        letter-spacing: -0.02em;
+      }
+
+      .principle__title {
+        font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+        letter-spacing: -0.01em;
+      }
+
+      .principle__desc {
+        font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+        color: var(--graphite-soft);
+        max-width: 65ch;
+        line-height: 1.65;
+      }
+
+      /* ------------------------------------------------------------ */
+      /* CONTACT — qualification form + direct WhatsApp               */
+      /* ------------------------------------------------------------ */
+      .contact__intro {
+        max-width: 62ch;
+        font-size: clamp(1rem, 1.2vw, 1.15rem);
+        color: var(--graphite-soft);
+        margin-bottom: clamp(3rem, 6vw, 4rem);
+        line-height: 1.65;
+      }
+
+      .contact__paths {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+
+      @media (min-width: 900px) {
+        .contact__paths {
+          grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+          gap: 2rem;
+        }
+      }
+
+      .contact__card {
+        background: var(--cream);
+        border: 1px solid var(--navy);
+        padding: clamp(1.75rem, 3.2vw, 2.6rem);
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      .contact__card--direct {
+        justify-content: space-between;
+      }
+
+      .contact__card-title {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: -0.005em;
+        color: var(--graphite);
+        margin: 0;
+      }
+
+      .contact__card-text {
+        font-size: 0.95rem;
+        color: var(--graphite-soft);
+        line-height: 1.55;
+        margin: 0;
+      }
+
+      /* Form layout */
+      .contact__form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .contact__form {
+          grid-template-columns: 1fr 1fr;
+          gap: 1.2rem 1.8rem;
+        }
+        .contact__field--full {
+          grid-column: 1 / -1;
+        }
+      }
+
+      .contact__field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: relative;
+      }
+
+      .contact__label {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.69rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+      }
+
+      .contact__label .req {
+        color: var(--olive);
+        margin-left: 2px;
+      }
+
+      .contact__input,
+      .contact__select,
+      .contact__textarea {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        color: var(--graphite);
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--graphite-soft);
+        padding: 0.5rem 0;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        transition: border-color 400ms var(--ease);
+        line-height: 1.4;
+        width: 100%;
+      }
+
+      .contact__input::placeholder,
+      .contact__textarea::placeholder {
+        color: var(--graphite-soft);
+        opacity: 0.55;
+      }
+
+      .contact__input:focus,
+      .contact__select:focus,
+      .contact__textarea:focus {
+        border-bottom-color: var(--olive);
+      }
+
+      .contact__select {
+        background-image: linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--graphite-soft) 50%
+          ),
+          linear-gradient(135deg, var(--graphite-soft) 50%, transparent 50%);
+        background-position:
+          calc(100% - 14px) 1.05rem,
+          calc(100% - 9px) 1.05rem;
+        background-size: 5px 5px, 5px 5px;
+        background-repeat: no-repeat;
+        padding-right: 1.8rem;
+        cursor: pointer;
+      }
+
+      .contact__select:focus {
+        background-image: linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--olive) 50%
+          ),
+          linear-gradient(135deg, var(--olive) 50%, transparent 50%);
+      }
+
+      .contact__textarea {
+        resize: vertical;
+        min-height: 4.5rem;
+        font-family: "Inter", sans-serif;
+      }
+
+      .contact__field--error .contact__input,
+      .contact__field--error .contact__select,
+      .contact__field--error .contact__textarea {
+        border-bottom-color: #7a2e2e;
+      }
+
+      .contact__field-error {
+        display: block;
+        font-family: "Inter", sans-serif;
+        font-size: 0.75rem;
+        line-height: 1.4;
+        color: #7a2e2e;
+        margin-top: 0.45rem;
+      }
+
+      .contact__field-error[hidden] {
+        display: none;
+      }
+
+      /* Honeypot — invisible to humans, visible to dumb bots */
+      .hp-trap {
+        position: absolute !important;
+        left: -9999px !important;
+        top: auto !important;
+        width: 1px !important;
+        height: 1px !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        overflow: hidden !important;
+      }
+
+      .contact__counter {
+        font-size: 0.7rem;
+        color: var(--graphite-soft);
+        letter-spacing: 0.05em;
+        text-align: right;
+        margin-top: -0.35rem;
+      }
+
+      .contact__submit-row {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+        align-items: flex-start;
+        margin-top: 0.5rem;
+      }
+
+      .contact__submit {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        background: var(--olive);
+        color: var(--cream);
+        padding: 1rem 1.5rem;
+        border-radius: 4px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
+        border: 0;
+        cursor: pointer;
+        transition: background 500ms var(--ease), transform 500ms var(--ease);
+      }
+
+      .contact__submit:hover:not(:disabled) {
+        background: var(--graphite);
+        transform: translateY(-1px);
+      }
+
+      .contact__submit span {
+        display: inline-block;
+        transition: transform 500ms var(--ease);
+      }
+
+      .contact__submit:hover:not(:disabled) span {
+        transform: translateX(3px);
+      }
+
+      .contact__submit:disabled {
+        opacity: 0.6;
+        cursor: progress;
+      }
+
+      .contact__feedback {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #7a2e2e;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .contact__feedback[hidden] {
+        display: none;
+      }
+
+      /* Direct WhatsApp card */
+      .contact__direct {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        align-self: flex-start;
+        background: transparent;
+        color: var(--graphite);
+        padding: 1rem 1.5rem;
+        border: 1px solid var(--graphite);
+        border-radius: 4px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
+        cursor: pointer;
+        transition: background 500ms var(--ease), color 500ms var(--ease);
+      }
+
+      .contact__direct:hover {
+        background: var(--graphite);
+        color: var(--cream);
+      }
+
+      .contact__direct span {
+        display: inline-block;
+        transition: transform 500ms var(--ease);
+      }
+
+      .contact__direct:hover span {
+        transform: translateX(3px);
+      }
+
+      .contact__direct-meta {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.69rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+        margin: 0;
+      }
+
+      .contact__note {
+        font-family: "Inter", sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+        margin-top: clamp(2.5rem, 4vw, 3.5rem);
+      }
+
+      /* Instagram / social block at the end of the contact section */
+      .contact__social {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        margin-top: clamp(2.5rem, 5vw, 3.5rem);
+        padding-top: clamp(1.5rem, 3vw, 2rem);
+        border-top: 1px solid rgba(30, 58, 95, 0.22);
+        flex-wrap: wrap;
+      }
+
+      .contact__social-label {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+      }
+
+      .contact__social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.65rem;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--graphite);
+        position: relative;
+        padding-bottom: 3px;
+        transition: color 400ms var(--ease);
+      }
+
+      .contact__social-link svg {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+      }
+
+      .contact__social-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: var(--olive);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 500ms var(--ease);
+      }
+
+      .contact__social-link:hover::after {
+        transform: scaleX(1);
+      }
+
+      /* Footer */
+      .footer {
+        padding: 2.6rem 0 2.4rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer__rule {
+        margin-bottom: 2.6rem;
+      }
+
+      .footer__grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        align-items: center;
+      }
+
+      @media (min-width: 760px) {
+        .footer__grid {
+          grid-template-columns: 1fr auto 1fr;
+          gap: 2rem;
+        }
+      }
+
+      .footer__brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 500;
+        font-size: 0.74rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--navy);
+      }
+
+      .footer__brand svg {
+        width: 26px;
+        height: 26px;
+      }
+
+      .footer__links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 1.4rem;
+      }
+
+      .footer__links a {
+        position: relative;
+        font-size: 0.72rem;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+        padding-bottom: 3px;
+      }
+
+      .footer__links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 1px;
+        background: var(--olive);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 500ms var(--ease);
+      }
+
+      .footer__links a:hover::after {
+        transform: scaleX(1);
+      }
+
+      .footer__sign {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-style: italic;
+        font-size: 1rem;
+        color: var(--graphite-soft);
+        text-align: right;
+      }
+
+      @media (max-width: 759px) {
+        .footer__sign {
+          text-align: left;
+        }
+      }
+
+      /* ------------------------------------------------------------ */
+      /* MODAL — qualification (one-question-at-a-time)               */
+      /* ------------------------------------------------------------ */
+      .qual-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(1rem, 3vw, 2.5rem);
+      }
+
+      .qual-modal[aria-hidden="false"] {
+        display: flex;
+      }
+
+      .qual-modal__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(31, 31, 31, 0.65);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        opacity: 0;
+        transition: opacity 250ms var(--ease);
+      }
+
+      .qual-modal.is-open .qual-modal__overlay {
+        opacity: 1;
+      }
+
+      .qual-modal__card {
+        position: relative;
+        width: 100%;
+        max-width: 580px;
+        max-height: calc(100dvh - 2rem);
+        background: var(--cream);
+        border: 1px solid var(--navy);
+        border-radius: 4px;
+        padding: clamp(2rem, 4vw, 3.5rem);
+        display: flex;
+        flex-direction: column;
+        gap: clamp(1.5rem, 3vw, 2rem);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 350ms var(--ease), transform 350ms var(--ease);
+        box-shadow: 0 24px 60px rgba(31, 31, 31, 0.1);
+        overflow: hidden;
+      }
+
+      .qual-modal.is-open .qual-modal__card {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .qual-modal__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0;
+      }
+
+      .qual-modal__progress {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+      }
+
+      .qual-modal__close {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 4px;
+        margin: -4px;
+        color: var(--graphite);
+        cursor: pointer;
+        transition: color 400ms var(--ease);
+        line-height: 0;
+      }
+
+      .qual-modal__close:hover {
+        color: var(--olive);
+      }
+
+      .qual-modal__close svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+
+      .qual-modal__progress-bar {
+        height: 1px;
+        background: rgba(30, 58, 95, 0.18);
+        overflow: hidden;
+        margin-top: -0.4rem;
+      }
+
+      .qual-modal__progress-fill {
+        height: 100%;
+        background: var(--olive);
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: transform 450ms var(--ease);
+      }
+
+      .qual-modal__body {
+        position: relative;
+        flex: 1;
+        min-height: 160px;
+        overflow: visible;
+      }
+
+      /* Only on really tight viewports (landscape mobile + virtual keyboard up)
+         allow the body to scroll, so nothing gets clipped. */
+      @media (max-height: 520px) {
+        .qual-modal__body {
+          overflow-y: auto;
+        }
+      }
+
+      .qual-modal__step {
+        display: none;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 280ms var(--ease), transform 280ms var(--ease);
+      }
+
+      .qual-modal__step[data-state="entering"],
+      .qual-modal__step[data-state="entering-back"] {
+        display: block;
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      .qual-modal__step[data-state="active"] {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .qual-modal__step[data-state="leaving-forward"],
+      .qual-modal__step[data-state="leaving-back"] {
+        display: block;
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      .qual-modal__step-label {
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.7rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--graphite-soft);
+        display: block;
+        margin-bottom: 1rem;
+      }
+
+      .qual-modal__question {
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: clamp(1.35rem, 2.6vw, 1.7rem);
+        line-height: 1.2;
+        letter-spacing: -0.015em;
+        color: var(--graphite);
+        margin: 0;
+      }
+
+      .qual-modal__field {
+        margin-top: clamp(1.6rem, 3.2vw, 2rem);
+        position: relative;
+      }
+
+      .qual-modal__field input,
+      .qual-modal__field select,
+      .qual-modal__field textarea {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 1.05rem;
+        color: var(--graphite);
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid var(--graphite-soft);
+        padding: 0.7rem 0;
+        outline: none;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        width: 100%;
+        transition: border-color 400ms var(--ease);
+        line-height: 1.4;
+      }
+
+      .qual-modal__field input::placeholder,
+      .qual-modal__field textarea::placeholder {
+        color: var(--graphite-soft);
+        opacity: 0.55;
+      }
+
+      .qual-modal__field input:focus,
+      .qual-modal__field select:focus,
+      .qual-modal__field textarea:focus {
+        border-bottom-color: var(--olive);
+      }
+
+      .qual-modal__field select {
+        cursor: pointer;
+        background-image: linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--graphite-soft) 50%
+          ),
+          linear-gradient(135deg, var(--graphite-soft) 50%, transparent 50%);
+        background-position:
+          calc(100% - 14px) 1.3rem,
+          calc(100% - 9px) 1.3rem;
+        background-size: 5px 5px, 5px 5px;
+        background-repeat: no-repeat;
+        padding-right: 1.8rem;
+      }
+
+      .qual-modal__field select:focus {
+        background-image: linear-gradient(
+            45deg,
+            transparent 50%,
+            var(--olive) 50%
+          ),
+          linear-gradient(135deg, var(--olive) 50%, transparent 50%);
+      }
+
+      .qual-modal__field textarea {
+        resize: vertical;
+        min-height: 5.5rem;
+        font-family: "Inter", sans-serif;
+      }
+
+      .qual-modal__helper {
+        display: block;
+        font-family: "Inter", sans-serif;
+        font-size: 0.78rem;
+        color: var(--graphite-soft);
+        line-height: 1.5;
+        margin-top: 0.7rem;
+      }
+
+      .qual-modal__counter {
+        position: absolute;
+        right: 0;
+        bottom: -1.4rem;
+        font-size: 0.7rem;
+        color: var(--graphite-soft);
+        letter-spacing: 0.05em;
+      }
+
+      .qual-modal__error {
+        display: block;
+        font-family: "Inter", sans-serif;
+        font-size: 0.78rem;
+        color: #7a2e2e;
+        font-weight: 500;
+        margin-top: 1rem;
+      }
+
+      .qual-modal__error[hidden] {
+        display: none;
+      }
+
+      .qual-modal__step--error .qual-modal__field input,
+      .qual-modal__step--error .qual-modal__field select,
+      .qual-modal__step--error .qual-modal__field textarea {
+        border-bottom-color: #7a2e2e;
+      }
+
+      .qual-modal__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: clamp(1.2rem, 2.4vw, 1.6rem);
+        border-top: 1px solid rgba(30, 58, 95, 0.22);
+      }
+
+      .qual-modal__back {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        padding: 0.6rem 0;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 0.88rem;
+        color: var(--graphite-soft);
+        cursor: pointer;
+        transition: color 400ms var(--ease);
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .qual-modal__back:hover {
+        color: var(--graphite);
+      }
+
+      .qual-modal__back[hidden] {
+        display: none;
+      }
+
+      .qual-modal__next {
+        appearance: none;
+        background: var(--olive);
+        color: var(--cream);
+        border: 0;
+        padding: 0.9rem 1.4rem;
+        border-radius: 4px;
+        font-family: "Inter", sans-serif;
+        font-weight: 700;
+        font-size: 0.88rem;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        min-height: 44px;
+        transition: background 500ms var(--ease), opacity 400ms var(--ease);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .qual-modal__next:hover:not(:disabled) {
+        background: var(--graphite);
+      }
+
+      .qual-modal__next:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .qual-modal__feedback {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: left;
+      }
+
+      .qual-modal__feedback p {
+        font-family: "Inter", sans-serif;
+        font-size: 0.88rem;
+        color: #7a2e2e;
+        margin: 0;
+      }
+
+      .qual-modal__feedback button {
+        align-self: flex-start;
+        appearance: none;
+        background: transparent;
+        border: 1px solid var(--graphite);
+        color: var(--graphite);
+        padding: 0.7rem 1.1rem;
+        border-radius: 4px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 0.82rem;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        transition: background 400ms var(--ease), color 400ms var(--ease);
+      }
+
+      .qual-modal__feedback button:hover {
+        background: var(--graphite);
+        color: var(--cream);
+      }
+
+      body.qual-modal-open {
+        overflow: hidden;
+      }
+
+      /* Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal-line,
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .loader__ring,
+        .loader__paisley,
+        .loader__dot {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .hero__symbol-mark,
+        .hero__symbol-arc,
+        .hero__symbol-dot {
+          animation: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="is-loading">
+    <!-- ===================== LOADER ===================== -->
+    <div class="loader" id="loader" aria-hidden="true">
+      <svg
+        class="loader__mark"
+        viewBox="0 0 1080 1080"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Carregando NP Hub"
+      >
+        <circle class="loader__ring" cx="540" cy="540" r="377" fill="#1f1f1f" />
+        <path
+          class="loader__paisley"
+          fill="#f5f1e8"
+          d="M678.64,737.5c5.48-6.34,4.54-15.98-2.03-21.19-24.83-19.7-88.1-71.39-85.5-84.38,3.23-16.15,50.31-4.61,98.76-52.26,46.07-45.3,68.78-90.33,35.53-176.86-46.13-120.06-190.83-118.14-190.83-118.14,0,0-65.61-2.85-128.47,49.07-6.69,5.52-7.1,15.65-.96,21.78l77.12,77.12c.36.36.72.69,1.11,1,2.74,2.23,15.05,13.83-15.02,20.62-33.26,7.51-88.04,36.94-114,95.74-.16.37-.34.73-.53,1.08-3.58,6.42-42.3,80.81,32.56,172.91,0,0,81.99,109.59,229.94,57.17.69-.25,1.37-.54,2.02-.89,6.53-3.45,43.63-23.51,60.29-42.78Z"
+        />
+        <circle class="loader__dot" cx="540" cy="540" r="60.81" fill="#6b7a3f" />
+      </svg>
+      <span class="loader__label">NP HUB</span>
+    </div>
+
+    <!-- ===================== NAV ===================== -->
+    <header class="nav" id="nav">
+      <div class="nav__inner">
+        <a href="#inicio" class="nav__brand" aria-label="NP Hub — início">
+          <!-- Brand symbol (smaller) -->
+          <svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="540" cy="540" r="377" fill="#1f1f1f" />
+            <path
+              fill="#f5f1e8"
+              d="M678.64,737.5c5.48-6.34,4.54-15.98-2.03-21.19-24.83-19.7-88.1-71.39-85.5-84.38,3.23-16.15,50.31-4.61,98.76-52.26,46.07-45.3,68.78-90.33,35.53-176.86-46.13-120.06-190.83-118.14-190.83-118.14,0,0-65.61-2.85-128.47,49.07-6.69,5.52-7.1,15.65-.96,21.78l77.12,77.12c.36.36.72.69,1.11,1,2.74,2.23,15.05,13.83-15.02,20.62-33.26,7.51-88.04,36.94-114,95.74-.16.37-.34.73-.53,1.08-3.58,6.42-42.3,80.81,32.56,172.91,0,0,81.99,109.59,229.94,57.17.69-.25,1.37-.54,2.02-.89,6.53-3.45,43.63-23.51,60.29-42.78Z"
+            />
+            <circle cx="540" cy="540" r="60.81" fill="#6b7a3f" />
+          </svg>
+          <span class="nav__brand-name">NP HUB</span>
+        </a>
+
+        <nav aria-label="Navegação principal">
+          <ul class="nav__menu">
+            <li><a class="nav__link" href="#inicio" data-link="inicio">Início</a></li>
+            <li><a class="nav__link" href="#manifesto" data-link="manifesto">Manifesto</a></li>
+            <li><a class="nav__link" href="#capacidades" data-link="capacidades">Capacidades</a></li>
+            <li><a class="nav__link" href="#cliente-ideal" data-link="cliente-ideal">Cliente ideal</a></li>
+            <li><a class="nav__link" href="#principios" data-link="principios">Princípios</a></li>
+            <li><a class="nav__link" href="#conversar" data-link="conversar">Conversar</a></li>
+          </ul>
+        </nav>
+
+        <button
+          type="button"
+          class="nav__cta"
+          id="open-qual-modal"
+          data-open-qual
+        >
+          Conversar
+        </button>
+
+        <button class="nav__toggle" type="button" aria-label="Abrir menu" aria-controls="mobile-menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <div class="nav__mobile" id="mobile-menu">
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#manifesto">Manifesto</a></li>
+          <li><a href="#capacidades">Capacidades</a></li>
+          <li><a href="#cliente-ideal">Cliente ideal</a></li>
+          <li><a href="#principios">Princípios</a></li>
+          <li>
+            <button type="button" class="nav__mobile-cta" data-open-qual>
+              Conversar
+            </button>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container">
+          <div class="hero__top">
+            <span class="eyebrow">NP HUB — MARKETING, TECNOLOGIA E AUTOMAÇÃO · EST. 2026</span>
+            <span class="eyebrow">SP / BR · ATENDEMOS TODO O BRASIL</span>
+          </div>
+        </div>
+
+        <div class="container hero__body-wrap">
+          <div class="hero__body">
+            <div class="hero__text">
+              <h1 class="hero__title">
+                <span><em class="reveal-line">Pensamos o problema.</em></span>
+                <span><strong class="reveal-line">Criamos o caminho.</strong></span>
+              </h1>
+
+              <p class="hero__lead reveal">
+                presença vira resultado quando estratégia, conteúdo, tecnologia e
+                performance trabalham juntos. é disso que a np hub trata.
+              </p>
+            </div>
+
+            <div class="hero__symbol-wrap reveal" aria-hidden="true">
+              <svg
+                class="hero__symbol"
+                viewBox="0 0 600 600"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <!-- Static outer ring (hairline) -->
+                <circle
+                  class="hero__symbol-ring"
+                  cx="300"
+                  cy="300"
+                  r="290"
+                  stroke-width="1"
+                />
+                <!-- Dashed inner ring -->
+                <circle
+                  class="hero__symbol-ring-dashed"
+                  cx="300"
+                  cy="300"
+                  r="232"
+                  stroke-width="1"
+                />
+                <!-- Cardinal ticks -->
+                <circle class="hero__symbol-tick" cx="300" cy="10" r="2.6" />
+                <circle class="hero__symbol-tick" cx="590" cy="300" r="2.6" />
+                <circle class="hero__symbol-tick" cx="300" cy="590" r="2.6" />
+                <circle class="hero__symbol-tick" cx="10" cy="300" r="2.6" />
+                <!-- Coordinate label (technical detail) -->
+                <text
+                  x="300"
+                  y="-2"
+                  class="hero__symbol-coord"
+                  text-anchor="middle"
+                  dy="0"
+                >
+                  N · 06
+                </text>
+                <text
+                  x="300"
+                  y="604"
+                  class="hero__symbol-coord"
+                  text-anchor="middle"
+                  dy="0"
+                >
+                  S · 18
+                </text>
+                <!-- Rotating arc (olive scanner) -->
+                <circle
+                  class="hero__symbol-arc"
+                  cx="300"
+                  cy="300"
+                  r="296"
+                  stroke-width="2"
+                  stroke-dasharray="120 1740"
+                />
+                <!-- Brand mark (rotates slowly) -->
+                <g class="hero__symbol-mark">
+                  <g transform="translate(300 300) scale(0.36) translate(-540 -540)">
+                    <circle cx="540" cy="540" r="377" fill="#1f1f1f" />
+                    <path
+                      fill="#f5f1e8"
+                      d="M678.64,737.5c5.48-6.34,4.54-15.98-2.03-21.19-24.83-19.7-88.1-71.39-85.5-84.38,3.23-16.15,50.31-4.61,98.76-52.26,46.07-45.3,68.78-90.33,35.53-176.86-46.13-120.06-190.83-118.14-190.83-118.14,0,0-65.61-2.85-128.47,49.07-6.69,5.52-7.1,15.65-.96,21.78l77.12,77.12c.36.36.72.69,1.11,1,2.74,2.23,15.05,13.83-15.02,20.62-33.26,7.51-88.04,36.94-114,95.74-.16.37-.34.73-.53,1.08-3.58,6.42-42.3,80.81,32.56,172.91,0,0,81.99,109.59,229.94,57.17.69-.25,1.37-.54,2.02-.89,6.53-3.45,43.63-23.51,60.29-42.78Z"
+                    />
+                    <circle
+                      class="hero__symbol-dot"
+                      cx="540"
+                      cy="540"
+                      r="60.81"
+                      fill="#6b7a3f"
+                    />
+                  </g>
+                </g>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="rule" aria-hidden="true"></div>
+          <div style="display: flex; justify-content: space-between; align-items: flex-end; padding-top: 2rem; gap: 2rem;">
+            <a href="#manifesto" class="hero__scroll" aria-label="Rolar para o manifesto">
+              <em>role</em>
+              <span class="hero__scroll-line" aria-hidden="true"></span>
+            </a>
+            <span class="eyebrow">06 SEÇÕES · UMA LEITURA</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== MANIFESTO ===================== -->
+      <section class="section section--alt" id="manifesto">
+        <div class="container container-tight">
+          <div class="section__head">
+            <span class="eyebrow reveal">01 — MANIFESTO</span>
+            <span class="eyebrow reveal">np hub · porque existimos</span>
+          </div>
+
+          <h2 class="section__title reveal">
+            Marketing ruim custa caro.
+          </h2>
+
+          <div class="manifesto__body">
+            <p class="reveal">
+              Empresas perdem dinheiro com conteúdo que não converte, com
+              agências que prometem e desaparecem, com soluções genéricas que
+              ignoram a realidade do negócio. A NP Hub corrige isso.
+            </p>
+            <p class="reveal">
+              Cada real investido em marketing deve voltar como resultado
+              <span class="olive-accent">real</span> — não como movimento. E
+              isso só acontece quando estratégia,
+              conteúdo, tecnologia e performance trabalham na mesma mesa, com
+              a mesma cabeça.
+            </p>
+          </div>
+
+          <p class="manifesto__close reveal">
+            antes de criar, <em>pensamos</em>. antes de vender, <em>entendemos</em>.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== CAPACIDADES ===================== -->
+      <section class="section" id="capacidades">
+        <div class="container">
+          <div class="section__head">
+            <span class="eyebrow reveal">02 — CAPACIDADES</span>
+            <span class="eyebrow reveal">quatro frentes</span>
+          </div>
+
+          <h2 class="section__title reveal">
+            Quatro frentes. Uma lógica.
+          </h2>
+
+          <div class="caps">
+            <article class="cap reveal">
+              <div class="cap__num">01</div>
+              <h3 class="cap__name"><span>·</span>Conteúdo e audiovisual</h3>
+              <p class="cap__desc">
+                Vídeos, drones, captação de imóveis, reels, institucionais.
+                Audiovisual como ferramenta de decisão, não como decoração.
+              </p>
+            </article>
+
+            <article class="cap reveal">
+              <div class="cap__num">02</div>
+              <h3 class="cap__name"><span>·</span>Estratégia e narrativa</h3>
+              <p class="cap__desc">
+                Posicionamento, roteiros, calendário editorial, direção criativa.
+                A camada que faz o conteúdo gerar conversa, não apenas alcance.
+              </p>
+            </article>
+
+            <article class="cap reveal">
+              <div class="cap__num">03</div>
+              <h3 class="cap__name"><span>·</span>Automação e tecnologia</h3>
+              <p class="cap__desc">
+                WhatsApp, CRM, IA aplicada ao comercial, dashboards. A camada
+                invisível que multiplica a operação sem inchar o time do cliente.
+              </p>
+            </article>
+
+            <article class="cap reveal">
+              <div class="cap__num">04</div>
+              <h3 class="cap__name"><span>·</span>Performance e resultado</h3>
+              <p class="cap__desc">
+                Relatórios, leitura de dados, otimização contínua. Sem isso,
+                marketing vira opinião.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CLIENTE IDEAL ===================== -->
+      <section class="section section--alt" id="cliente-ideal">
+        <div class="container container-tight">
+          <div class="section__head">
+            <span class="eyebrow reveal">03 — CLIENTE IDEAL</span>
+            <span class="eyebrow reveal">para quem · para quem não</span>
+          </div>
+
+          <h2 class="section__title reveal">
+            Não atendemos todo mundo. De propósito.
+          </h2>
+
+          <div class="ideal">
+            <div class="ideal__col ideal__col--yes reveal">
+              <h3>Atendemos quem</h3>
+              <ul>
+                <li>Construtoras, imobiliárias e incorporadoras de pequeno e médio porte</li>
+                <li>Já investe em marketing mas não vê retorno claro</li>
+                <li>Tem produto bom e comunicação fraca</li>
+                <li>Valoriza parceria de longo prazo em vez de fornecedor pontual</li>
+                <li>Sustenta investimento mensal premium</li>
+              </ul>
+            </div>
+
+            <div class="ideal__col ideal__col--no reveal">
+              <h3>Não atendemos quem</h3>
+              <ul>
+                <li>Busca o menor preço do mercado</li>
+                <li>Quer execução sem ouvir estratégia</li>
+                <li>Não tem orçamento de marketing consolidado</li>
+                <li>Espera resultado em 30 dias sem processo</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="ideal__close reveal">
+            dizer <span class="olive-accent">não</span> também é fazer marca.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== PRINCÍPIOS ===================== -->
+      <section class="section" id="principios">
+        <div class="container container-tight">
+          <div class="section__head">
+            <span class="eyebrow reveal">04 — PRINCÍPIOS</span>
+            <span class="eyebrow reveal">cinco regras</span>
+          </div>
+
+          <h2 class="section__title reveal">
+            Cinco regras que <em class="serif-em">não</em> negociamos.
+          </h2>
+
+          <div class="principles">
+            <article class="principle reveal">
+              <div class="principle__num">01</div>
+              <div>
+                <h3 class="principle__title">Diagnóstico antes de proposta.</h3>
+                <p class="principle__desc">
+                  Solução genérica é o oposto da NP Hub. Cada cliente é estudado
+                  antes de receber uma proposta.
+                </p>
+              </div>
+            </article>
+
+            <article class="principle reveal">
+              <div class="principle__num">02</div>
+              <div>
+                <h3 class="principle__title">Promessa pequena, entrega grande.</h3>
+                <p class="principle__desc">
+                  Marketing ruim é, antes de tudo, expectativa quebrada.
+                  Recusamos contratos cujo escopo não cabe na realidade.
+                </p>
+              </div>
+            </article>
+
+            <article class="principle reveal">
+              <div class="principle__num">03</div>
+              <div>
+                <h3 class="principle__title">Preço honesto, valor visível.</h3>
+                <p class="principle__desc">
+                  Cobramos pelo valor entregue, não pelo prestígio inflado.
+                  Cada cliente explica internamente por que paga o que paga.
+                </p>
+              </div>
+            </article>
+
+            <article class="principle reveal">
+              <div class="principle__num">04</div>
+              <div>
+                <h3 class="principle__title">Parceria, não fornecimento.</h3>
+                <p class="principle__desc">
+                  Não somos extensão da sua equipe. Somos parceiros com voz
+                  própria — discordamos quando precisa.
+                </p>
+              </div>
+            </article>
+
+            <article class="principle reveal">
+              <div class="principle__num">05</div>
+              <div>
+                <h3 class="principle__title">Humano no centro, tecnologia no bastidor.</h3>
+                <p class="principle__desc">
+                  Conteúdo humano é a fachada. Automação e IA ficam invisíveis,
+                  melhorando processos sem desumanizar.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== CONVERSAR ===================== -->
+      <section class="section section--alt" id="conversar">
+        <div class="container container-tight">
+          <div class="section__head">
+            <span class="eyebrow reveal">05 — CONTATO</span>
+            <span class="eyebrow reveal">resposta em até um dia útil</span>
+          </div>
+
+          <h2 class="section__title reveal">
+            Vamos pensar o problema <em class="serif-em">juntos</em>.
+          </h2>
+
+          <p class="contact__intro reveal">
+            Quanto mais a gente souber antes da conversa, melhor a primeira call.
+            Mas se preferir, fala direto.
+          </p>
+
+          <div class="contact__paths">
+            <!-- Path 1 — Form -->
+            <article class="contact__card reveal">
+              <h3 class="contact__card-title">Conta um pouco do contexto</h3>
+
+              <form
+                class="contact__form"
+                id="contact-form"
+                novalidate
+                autocomplete="on"
+              >
+                <!-- Honeypot — invisible field for bots -->
+                <div class="hp-trap" aria-hidden="true">
+                  <label>
+                    Não preencha este campo:
+                    <input
+                      type="text"
+                      name="website"
+                      tabindex="-1"
+                      autocomplete="off"
+                    />
+                  </label>
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="cf-nome">
+                    Nome <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="contact__input"
+                    id="cf-nome"
+                    name="nome"
+                    type="text"
+                    required
+                    autocomplete="name"
+                  />
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="cf-empresa">
+                    Empresa <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="contact__input"
+                    id="cf-empresa"
+                    name="empresa"
+                    type="text"
+                    required
+                    autocomplete="organization"
+                  />
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="cf-whatsapp">
+                    WhatsApp <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="contact__input"
+                    id="cf-whatsapp"
+                    name="whatsapp"
+                    type="tel"
+                    inputmode="tel"
+                    placeholder="(00) 00000-0000"
+                    required
+                    autocomplete="tel"
+                    maxlength="16"
+                  />
+                </div>
+
+                <div class="contact__field">
+                  <label class="contact__label" for="cf-tipo">
+                    Segmento <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <input
+                    class="contact__input"
+                    id="cf-tipo"
+                    name="tipo"
+                    type="text"
+                    required
+                    placeholder="ex: construtora, imobiliária, locação, lançamentos…"
+                  />
+                </div>
+
+                <div class="contact__field contact__field--full">
+                  <label class="contact__label" for="cf-investimento">
+                    Investimento mensal em marketing
+                    <span class="req" aria-hidden="true">*</span>
+                  </label>
+                  <select
+                    class="contact__select"
+                    id="cf-investimento"
+                    name="investimento"
+                    required
+                  >
+                    <option value="" disabled selected hidden>selecione…</option>
+                    <option value="Ainda não invisto de forma estruturada">
+                      Ainda não invisto de forma estruturada
+                    </option>
+                    <option value="Até R$ 5.000">Até R$ 5.000</option>
+                    <option value="R$ 5.000 a R$ 15.000">
+                      R$ 5.000 a R$ 15.000
+                    </option>
+                    <option value="R$ 15.000 a R$ 30.000">
+                      R$ 15.000 a R$ 30.000
+                    </option>
+                    <option value="Acima de R$ 30.000">Acima de R$ 30.000</option>
+                  </select>
+                </div>
+
+                <div class="contact__field contact__field--full">
+                  <label class="contact__label" for="cf-mensagem">
+                    O que mais te incomoda hoje?
+                  </label>
+                  <textarea
+                    class="contact__textarea"
+                    id="cf-mensagem"
+                    name="mensagem"
+                    rows="3"
+                    maxlength="300"
+                    placeholder="ex: tráfego sem conversão, conteúdo sem identidade, time desorganizado…"
+                  ></textarea>
+                  <span class="contact__counter" id="cf-counter">0 / 300</span>
+                </div>
+
+                <div class="contact__submit-row">
+                  <button
+                    class="contact__submit"
+                    id="cf-submit"
+                    type="submit"
+                  >
+                    <span class="contact__submit-label">
+                      Enviar e seguir no WhatsApp
+                    </span>
+                    <span aria-hidden="true">→</span>
+                  </button>
+                  <p
+                    class="contact__feedback"
+                    id="cf-feedback"
+                    role="alert"
+                    hidden
+                  >
+                    Algo deu errado. Tente o WhatsApp direto.
+                  </p>
+                </div>
+              </form>
+            </article>
+
+            <!-- Path 2 — Direct WhatsApp -->
+            <article class="contact__card contact__card--direct reveal">
+              <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <h3 class="contact__card-title">Já sabe o que quer falar?</h3>
+                <p class="contact__card-text">
+                  Sem formulário. Manda mensagem direto.
+                </p>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  gap: 1rem;
+                  align-items: flex-start;
+                "
+              >
+                <button class="contact__direct" type="button" id="cf-direct">
+                  Falar agora no WhatsApp
+                  <span aria-hidden="true">→</span>
+                </button>
+                <p class="contact__direct-meta">resposta em até 1 dia útil</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="contact__social reveal">
+            <span class="contact__social-label">também estamos em</span>
+            <a
+              class="contact__social-link"
+              href="https://www.instagram.com/somosnphub/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Instagram da NP Hub: @somosnphub"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+              </svg>
+              <span>@somosnphub</span>
+            </a>
+          </div>
+
+          <p class="contact__note reveal">
+            operação remota · atendemos em todo o brasil
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__rule rule" aria-hidden="true"></div>
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="540" cy="540" r="377" fill="#1f1f1f" />
+              <path
+                fill="#f5f1e8"
+                d="M678.64,737.5c5.48-6.34,4.54-15.98-2.03-21.19-24.83-19.7-88.1-71.39-85.5-84.38,3.23-16.15,50.31-4.61,98.76-52.26,46.07-45.3,68.78-90.33,35.53-176.86-46.13-120.06-190.83-118.14-190.83-118.14,0,0-65.61-2.85-128.47,49.07-6.69,5.52-7.1,15.65-.96,21.78l77.12,77.12c.36.36.72.69,1.11,1,2.74,2.23,15.05,13.83-15.02,20.62-33.26,7.51-88.04,36.94-114,95.74-.16.37-.34.73-.53,1.08-3.58,6.42-42.3,80.81,32.56,172.91,0,0,81.99,109.59,229.94,57.17.69-.25,1.37-.54,2.02-.89,6.53-3.45,43.63-23.51,60.29-42.78Z"
+              />
+              <circle cx="540" cy="540" r="60.81" fill="#6b7a3f" />
+            </svg>
+            <span>NP HUB © 2026</span>
+          </div>
+
+          <ul class="footer__links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#manifesto">Manifesto</a></li>
+            <li><a href="#capacidades">Capacidades</a></li>
+            <li><a href="#principios">Princípios</a></li>
+            <li><a href="#conversar">Contato</a></li>
+            <li>
+              <a
+                href="https://www.instagram.com/somosnphub/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram NP Hub"
+              >
+                Instagram
+              </a>
+            </li>
+          </ul>
+
+          <p class="footer__sign">
+            nisso pensai. depois, resolva.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===================== QUALIFICATION MODAL ===================== -->
+    <div
+      class="qual-modal"
+      id="qual-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="qm-question"
+      aria-hidden="true"
+    >
+      <div class="qual-modal__overlay" data-qm-close></div>
+      <div class="qual-modal__card" role="document">
+        <header class="qual-modal__header">
+          <span class="qual-modal__progress" id="qm-progress" aria-live="polite">
+            01 / 06
+          </span>
+          <button
+            type="button"
+            class="qual-modal__close"
+            aria-label="Fechar"
+            data-qm-close
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <line x1="5" y1="5" x2="19" y2="19" />
+              <line x1="19" y1="5" x2="5" y2="19" />
+            </svg>
+          </button>
+        </header>
+
+        <div class="qual-modal__progress-bar" aria-hidden="true">
+          <div class="qual-modal__progress-fill" id="qm-fill"></div>
+        </div>
+
+        <form id="qual-form" novalidate>
+          <!-- Honeypot — invisible field for bots -->
+          <div class="hp-trap" aria-hidden="true">
+            <label>
+              Não preencha este campo:
+              <input
+                type="text"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </label>
+          </div>
+
+          <div class="qual-modal__body" id="qm-body">
+            <!-- Step 1 — Nome -->
+            <section class="qual-modal__step" data-step="1">
+              <span class="qual-modal__step-label">PERGUNTA 01</span>
+              <h2 class="qual-modal__question" id="qm-question">
+                Como podemos te chamar?
+              </h2>
+              <div class="qual-modal__field">
+                <input
+                  type="text"
+                  name="nome"
+                  id="qm-nome"
+                  placeholder="seu nome"
+                  required
+                  autocomplete="name"
+                />
+              </div>
+              <span class="qual-modal__error" data-error hidden></span>
+            </section>
+
+            <!-- Step 2 — Empresa -->
+            <section class="qual-modal__step" data-step="2">
+              <span class="qual-modal__step-label">PERGUNTA 02</span>
+              <h2 class="qual-modal__question">De qual empresa você é?</h2>
+              <div class="qual-modal__field">
+                <input
+                  type="text"
+                  name="empresa"
+                  id="qm-empresa"
+                  placeholder="nome da empresa"
+                  required
+                  autocomplete="organization"
+                />
+              </div>
+              <span class="qual-modal__error" data-error hidden></span>
+            </section>
+
+            <!-- Step 3 — WhatsApp -->
+            <section class="qual-modal__step" data-step="3">
+              <span class="qual-modal__step-label">PERGUNTA 03</span>
+              <h2 class="qual-modal__question">
+                Qual o melhor WhatsApp para a gente conversar?
+              </h2>
+              <div class="qual-modal__field">
+                <input
+                  type="tel"
+                  name="whatsapp"
+                  id="qm-whatsapp"
+                  placeholder="(00) 00000-0000"
+                  inputmode="tel"
+                  maxlength="16"
+                  required
+                  autocomplete="tel"
+                />
+              </div>
+              <span class="qual-modal__error" data-error hidden></span>
+            </section>
+
+            <!-- Step 4 — Segmento (texto livre) -->
+            <section class="qual-modal__step" data-step="4">
+              <span class="qual-modal__step-label">PERGUNTA 04</span>
+              <h2 class="qual-modal__question">Em qual segmento você atua?</h2>
+              <div class="qual-modal__field">
+                <input
+                  type="text"
+                  name="segmento"
+                  id="qm-segmento"
+                  placeholder="ex: construtora, imobiliária, locação, lançamentos, gestão de aluguel…"
+                  required
+                />
+              </div>
+              <span class="qual-modal__helper">
+                escreva como preferir — sem opções fixas
+              </span>
+              <span class="qual-modal__error" data-error hidden></span>
+            </section>
+
+            <!-- Step 5 — Investimento -->
+            <section class="qual-modal__step" data-step="5">
+              <span class="qual-modal__step-label">PERGUNTA 05</span>
+              <h2 class="qual-modal__question">
+                Quanto você investe em marketing por mês hoje?
+              </h2>
+              <div class="qual-modal__field">
+                <select name="investimento" id="qm-investimento" required>
+                  <option value="" disabled selected hidden>selecione…</option>
+                  <option value="Ainda não invisto de forma estruturada">
+                    Ainda não invisto de forma estruturada
+                  </option>
+                  <option value="Até R$ 5.000">Até R$ 5.000</option>
+                  <option value="R$ 5.000 a R$ 15.000">
+                    R$ 5.000 a R$ 15.000
+                  </option>
+                  <option value="R$ 15.000 a R$ 30.000">
+                    R$ 15.000 a R$ 30.000
+                  </option>
+                  <option value="Acima de R$ 30.000">Acima de R$ 30.000</option>
+                </select>
+              </div>
+              <span class="qual-modal__error" data-error hidden></span>
+            </section>
+
+            <!-- Step 6 — Mensagem opcional -->
+            <section class="qual-modal__step" data-step="6">
+              <span class="qual-modal__step-label">PERGUNTA 06</span>
+              <h2 class="qual-modal__question">
+                Quer adicionar algo antes da gente conversar?
+              </h2>
+              <div class="qual-modal__field">
+                <textarea
+                  name="mensagem"
+                  id="qm-mensagem"
+                  rows="3"
+                  maxlength="300"
+                  placeholder="ex: tráfego sem conversão, conteúdo sem identidade, time desorganizado…"
+                ></textarea>
+                <span class="qual-modal__counter" id="qm-counter">0 / 300</span>
+              </div>
+              <span class="qual-modal__helper">opcional — pode pular</span>
+              <span class="qual-modal__error" data-error hidden></span>
+            </section>
+
+            <!-- Error / fallback view -->
+            <section
+              class="qual-modal__step qual-modal__feedback"
+              data-step="error"
+            >
+              <span class="qual-modal__step-label">ALGO DEU ERRADO</span>
+              <h2 class="qual-modal__question">
+                Não conseguimos enviar agora.
+              </h2>
+              <p>Algo deu errado. Tente o WhatsApp direto.</p>
+              <button type="button" id="qm-fallback">
+                Ir para o WhatsApp →
+              </button>
+            </section>
+          </div>
+
+          <footer class="qual-modal__footer">
+            <button
+              type="button"
+              class="qual-modal__back"
+              id="qm-back"
+              hidden
+            >
+              ← Voltar
+            </button>
+            <span style="flex: 1"></span>
+            <button
+              type="submit"
+              class="qual-modal__next"
+              id="qm-next"
+              disabled
+            >
+              <span id="qm-next-label">Avançar</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </footer>
+        </form>
+      </div>
+    </div>
+
+    <!-- JSON-LD Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "NP Hub",
+        "slogan": "Pensamos o problema. Criamos o caminho.",
+        "email": "nphubcontato@gmail.com",
+        "description": "Marketing, tecnologia e automação para o mercado imobiliário brasileiro."
+      }
+    </script>
+
+    <script>
+      (function () {
+        const nav = document.getElementById("nav");
+        const toggle = nav.querySelector(".nav__toggle");
+        const mobileLinks = nav.querySelectorAll(".nav__mobile a, .nav__mobile button");
+        const loader = document.getElementById("loader");
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        // Loader dismissal — wait for the bounce + spin to finish
+        const loaderDelay = prefersReducedMotion ? 250 : 2050;
+        let siteStarted = false;
+        const startSite = () => {
+          if (siteStarted) return;
+          siteStarted = true;
+          loader && loader.classList.add("is-done");
+          document.body.classList.remove("is-loading");
+          // Trigger hero reveals once loader starts fading
+          document
+            .querySelectorAll(".hero .reveal-line, .hero .reveal")
+            .forEach((el, i) => {
+              setTimeout(
+                () => el.classList.add("is-shown"),
+                (prefersReducedMotion ? 0 : 80) + i * 110,
+              );
+            });
+        };
+        if (document.readyState === "complete") {
+          window.setTimeout(startSite, loaderDelay);
+        } else {
+          window.addEventListener(
+            "load",
+            () => window.setTimeout(startSite, loaderDelay),
+            { once: true },
+          );
+          // Safety net: never block the site for more than 4s
+          window.setTimeout(startSite, 4000);
+        }
+
+        // Sticky nav state
+        const onScroll = () => {
+          if (window.scrollY > 16) nav.classList.add("is-scrolled");
+          else nav.classList.remove("is-scrolled");
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        // Mobile menu
+        toggle.addEventListener("click", () => {
+          const open = nav.classList.toggle("is-open");
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+        });
+        mobileLinks.forEach((a) =>
+          a.addEventListener("click", () => {
+            nav.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
+          }),
+        );
+
+        // Active section indicator (IntersectionObserver)
+        const links = Array.from(document.querySelectorAll(".nav__link"));
+        const idToLink = new Map(
+          links.map((l) => [l.getAttribute("data-link"), l]),
+        );
+        const sections = Array.from(document.querySelectorAll("main section[id]"));
+
+        const setActive = (id) => {
+          links.forEach((l) => l.classList.remove("is-active"));
+          const link = idToLink.get(id);
+          if (link) link.classList.add("is-active");
+        };
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            // Pick the entry closest to the top of the viewport that is intersecting
+            const visible = entries
+              .filter((e) => e.isIntersecting)
+              .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            if (visible[0]) setActive(visible[0].target.id);
+          },
+          {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: [0, 0.25, 0.5, 0.75, 1],
+          },
+        );
+        sections.forEach((s) => io.observe(s));
+
+        // Reveal-on-scroll
+        const revealEls = document.querySelectorAll(".reveal, .reveal-line");
+        const ro = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-shown");
+                ro.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
+        );
+        revealEls.forEach((el) => ro.observe(el));
+
+        // Guard: prevent startSite() from triggering hero reveals twice
+        // (handled inside startSite above)
+
+        // ------------------------------------------------------------
+        // Contact form — qualification + WhatsApp handoff
+        // ------------------------------------------------------------
+        const SCRIPT_URL =
+          "https://script.google.com/macros/s/AKfycby8StBaEbagar8vobaCBPb22cg_Eho-2xBc_NC4Z1fx8hC8_O8i4smw0wKbEhdMdbDa/exec";
+        const WHATSAPP_NUMERO = "5519971144026";
+        const MIN_FILL_MS = 3000;
+
+        // ------------------------------------------------------------
+        // Anti-spam — shared validation utilities
+        // ------------------------------------------------------------
+        const PALAVRAS_PROIBIDAS = [
+          "merda", "merd", "porra", "caralho", "caralh", "fdp", "pqp",
+          "foda", "foder", "fud", "puta", "putaria", "put",
+          "cu", "cuzao", "cuzão", "buceta", "bct", "xota",
+          "pinto", "pênis", "penis", "vagina", "pica",
+          "viado", "viadinho", "bicha", "bixa", "boiola",
+          "cacete", "desgraça", "desgraca", "arrombado",
+          "bosta", "cagar", "cagado", "idiota", "otario", "otário",
+          "fuck", "shit", "bitch", "asshole", "dick",
+        ];
+
+        const SEQUENCIAS_TECLADO = [
+          "qwerty", "qwert", "asdf", "asdfg", "zxcv", "zxcvb",
+          "1234", "12345", "123456", "abcd", "abcde",
+          "aaaa", "bbbb", "cccc", "xxxx", "zzzz",
+          "teste123", "testeteste",
+        ];
+
+        const validarCampo = (tipo, valor, options = {}) => {
+          const required = options.required !== false;
+          const value = (valor || "").toString().trim();
+
+          // 1) empty
+          if (!value) {
+            return required
+              ? { valido: false, erro: "Esse campo é obrigatório." }
+              : { valido: true, erro: "" };
+          }
+
+          const lower = value.toLowerCase();
+
+          // 2) bad words (substring match catches inflections like 'merdaaa')
+          for (const w of PALAVRAS_PROIBIDAS) {
+            if (lower.indexOf(w) !== -1) {
+              return {
+                valido: false,
+                erro: "Conteúdo inválido. Tente novamente.",
+              };
+            }
+          }
+
+          // Selects only need rule 1+2; we're past both.
+          if (tipo === "investimento") return { valido: true, erro: "" };
+
+          // Optional message: rules 1+2 only.
+          if (tipo === "mensagem") return { valido: true, erro: "" };
+
+          // 6) WhatsApp — exact 11 digits, 3rd digit must be 9 (mobile BR)
+          if (tipo === "whatsapp") {
+            const digits = value.replace(/\D+/g, "");
+            if (digits.length !== 11 || digits.charAt(2) !== "9") {
+              return {
+                valido: false,
+                erro: "WhatsApp incompleto ou inválido.",
+              };
+            }
+            return { valido: true, erro: "" };
+          }
+
+          // 3) 4+ repeated chars
+          if (/(.)\1{3,}/.test(value)) {
+            return { valido: false, erro: "Preencha com informação real." };
+          }
+
+          // 4) keyboard sequences
+          const condensed = lower.replace(/\s+/g, "");
+          for (const s of SEQUENCIAS_TECLADO) {
+            if (condensed.indexOf(s) !== -1) {
+              return {
+                valido: false,
+                erro: "Preencha com informação real.",
+              };
+            }
+          }
+
+          // 5) min length + at least one letter (+ vowel for nome)
+          const minLength = tipo === "segmento" ? 3 : 2;
+          if (value.length < minLength) {
+            return { valido: false, erro: "Preencha com informação real." };
+          }
+          if (!/[a-zà-ÿA-Z]/i.test(value)) {
+            return { valido: false, erro: "Preencha com informação real." };
+          }
+          if (tipo === "nome" && !/[aeiouáàâãéèêíïóôõöú]/i.test(value)) {
+            return { valido: false, erro: "Preencha com informação real." };
+          }
+
+          return { valido: true, erro: "" };
+        };
+
+        const isHoneypotTripped = (form) => {
+          const hp = form.querySelector('input[name="website"]');
+          return !!(hp && hp.value.trim());
+        };
+
+        const isTooFast = (openedAt) =>
+          !openedAt || Date.now() - openedAt < MIN_FILL_MS;
+
+        const form = document.getElementById("contact-form");
+        const submitBtn = document.getElementById("cf-submit");
+        const submitLabel = submitBtn
+          ? submitBtn.querySelector(".contact__submit-label")
+          : null;
+        const feedback = document.getElementById("cf-feedback");
+        const directBtn = document.getElementById("cf-direct");
+        const phoneInput = document.getElementById("cf-whatsapp");
+        const messageInput = document.getElementById("cf-mensagem");
+        const counter = document.getElementById("cf-counter");
+
+        const buildWhatsAppUrl = (text) =>
+          `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(text)}`;
+
+        // Phone mask: (00) 00000-0000 or (00) 0000-0000
+        const applyPhoneMask = (raw) => {
+          const digits = raw.replace(/\D+/g, "").slice(0, 11);
+          if (!digits) return "";
+          if (digits.length <= 2) return `(${digits}`;
+          if (digits.length <= 6)
+            return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+          if (digits.length <= 10)
+            return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(
+              6,
+            )}`;
+          return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(
+            7,
+          )}`;
+        };
+
+        if (phoneInput) {
+          phoneInput.addEventListener("input", (e) => {
+            e.target.value = applyPhoneMask(e.target.value);
+          });
+        }
+
+        if (messageInput && counter) {
+          const updateCounter = () => {
+            counter.textContent = `${messageInput.value.length} / 300`;
+          };
+          messageInput.addEventListener("input", updateCounter);
+          updateCounter();
+        }
+
+        const showError = (msg) => {
+          if (!feedback) return;
+          feedback.textContent =
+            msg || "Algo deu errado. Tente o WhatsApp direto.";
+          feedback.hidden = false;
+        };
+
+        const hideError = () => {
+          if (feedback) feedback.hidden = true;
+        };
+
+        const setSubmitting = (isLoading) => {
+          if (!submitBtn || !submitLabel) return;
+          submitBtn.disabled = isLoading;
+          submitLabel.textContent = isLoading
+            ? "Enviando…"
+            : "Enviar e seguir no WhatsApp";
+        };
+
+        const setFieldError = (input, msg) => {
+          const field = input.closest(".contact__field");
+          if (!field) return;
+          field.classList.add("contact__field--error");
+          let errorEl = field.querySelector(".contact__field-error");
+          if (!errorEl) {
+            errorEl = document.createElement("span");
+            errorEl.className = "contact__field-error";
+            field.appendChild(errorEl);
+          }
+          errorEl.textContent = msg;
+        };
+
+        const clearFieldError = (input) => {
+          const field = input.closest(".contact__field");
+          if (!field) return;
+          field.classList.remove("contact__field--error");
+          const errorEl = field.querySelector(".contact__field-error");
+          if (errorEl) errorEl.remove();
+        };
+
+        // Track when the inline form first becomes available to the user.
+        let inlineOpenedAt = null;
+        const inlineSection = document.getElementById("conversar");
+        if (inlineSection && "IntersectionObserver" in window) {
+          const obs = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                if (entry.isIntersecting && !inlineOpenedAt) {
+                  inlineOpenedAt = Date.now();
+                  obs.disconnect();
+                  break;
+                }
+              }
+            },
+            { threshold: 0.1 },
+          );
+          obs.observe(inlineSection);
+        } else {
+          inlineOpenedAt = Date.now();
+        }
+
+        if (form) {
+          const inlineFieldMap = [
+            { id: "cf-nome", tipo: "nome" },
+            { id: "cf-empresa", tipo: "empresa" },
+            { id: "cf-whatsapp", tipo: "whatsapp" },
+            { id: "cf-tipo", tipo: "segmento" },
+            { id: "cf-investimento", tipo: "investimento" },
+            { id: "cf-mensagem", tipo: "mensagem", required: false },
+          ];
+
+          // Clear error when user starts editing
+          form.addEventListener("input", (e) => {
+            if (e.target && e.target.matches("input, select, textarea")) {
+              clearFieldError(e.target);
+            }
+          });
+          form.addEventListener("change", (e) => {
+            if (e.target && e.target.matches("input, select, textarea")) {
+              clearFieldError(e.target);
+            }
+          });
+
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            hideError();
+
+            // Silent abort if honeypot was filled by a bot
+            if (isHoneypotTripped(form)) {
+              window.location.href = buildWhatsAppUrl(
+                "Olá! Vim pelo site da NP Hub e quero conversar.",
+              );
+              return;
+            }
+
+            // Silent abort if filled too fast (likely a bot)
+            if (isTooFast(inlineOpenedAt)) {
+              window.location.href = buildWhatsAppUrl(
+                "Olá! Vim pelo site da NP Hub e quero conversar.",
+              );
+              return;
+            }
+
+            // Field-by-field validation
+            let firstInvalid = null;
+            for (const cfg of inlineFieldMap) {
+              const input = document.getElementById(cfg.id);
+              if (!input) continue;
+              const result = validarCampo(cfg.tipo, input.value, {
+                required: cfg.required !== false,
+              });
+              if (!result.valido) {
+                setFieldError(input, result.erro);
+                if (!firstInvalid) firstInvalid = input;
+              } else {
+                clearFieldError(input);
+              }
+            }
+            if (firstInvalid) {
+              firstInvalid.focus();
+              return;
+            }
+
+            const fd = new FormData(form);
+            const payload = {
+              nome: (fd.get("nome") || "").toString().trim(),
+              empresa: (fd.get("empresa") || "").toString().trim(),
+              whatsapp: (fd.get("whatsapp") || "").toString().trim(),
+              tipo: (fd.get("tipo") || "").toString().trim(),
+              investimento: (fd.get("investimento") || "").toString(),
+              mensagem: (fd.get("mensagem") || "").toString().trim(),
+            };
+
+            setSubmitting(true);
+
+            try {
+              const body = new FormData();
+              body.append("data", JSON.stringify(payload));
+              await fetch(SCRIPT_URL, {
+                method: "POST",
+                body,
+              });
+
+              const texto =
+                `Olá! Sou ${payload.nome} da ${payload.empresa}. ` +
+                `Acabei de preencher o formulário no site da NP Hub. ` +
+                `Segmento: ${payload.tipo}. ` +
+                `Quero conversar sobre marketing e estratégia.`;
+              window.location.href = buildWhatsAppUrl(texto);
+            } catch (err) {
+              setSubmitting(false);
+              showError();
+            }
+          });
+        }
+
+        if (directBtn) {
+          directBtn.addEventListener("click", () => {
+            const texto = "Olá! Vim pelo site da NP Hub e quero conversar.";
+            window.location.href = buildWhatsAppUrl(texto);
+          });
+        }
+
+        // ------------------------------------------------------------
+        // Qualification modal (one-question-at-a-time)
+        // ------------------------------------------------------------
+        const modal = document.getElementById("qual-modal");
+        const openBtns = document.querySelectorAll("[data-open-qual]");
+        const openBtn = openBtns[0]; // legacy reference for guard checks
+        const qmForm = document.getElementById("qual-form");
+        const qmBody = document.getElementById("qm-body");
+        const qmProgress = document.getElementById("qm-progress");
+        const qmFill = document.getElementById("qm-fill");
+        const qmBack = document.getElementById("qm-back");
+        const qmNext = document.getElementById("qm-next");
+        const qmNextLabel = document.getElementById("qm-next-label");
+        const qmFallback = document.getElementById("qm-fallback");
+        const qmPhone = document.getElementById("qm-whatsapp");
+        const qmMessage = document.getElementById("qm-mensagem");
+        const qmCounter = document.getElementById("qm-counter");
+
+        if (!modal || !openBtn) return;
+
+        const steps = Array.from(
+          qmBody.querySelectorAll(".qual-modal__step:not([data-step='error'])"),
+        );
+        const errorStep = qmBody.querySelector('[data-step="error"]');
+        const TOTAL = steps.length;
+        let currentStep = 0;
+        let isAnimating = false;
+        let isSubmitting = false;
+        let lastFocusedBeforeOpen = null;
+
+        const pad2 = (n) => String(n).padStart(2, "0");
+
+        const updateProgress = () => {
+          qmProgress.textContent = `${pad2(currentStep + 1)} / ${pad2(TOTAL)}`;
+          const pct = (currentStep + 1) / TOTAL;
+          qmFill.style.transform = `scaleX(${pct})`;
+        };
+
+        const getStepInput = (index) =>
+          steps[index].querySelector("input, select, textarea");
+
+        // Maps step index → field "tipo" key used by validarCampo
+        const STEP_TIPO = [
+          "nome",
+          "empresa",
+          "whatsapp",
+          "segmento",
+          "investimento",
+          "mensagem",
+        ];
+
+        const stepIsRequired = (index) => index < TOTAL - 1; // last (mensagem) optional
+
+        // Lightweight check — used only to enable/disable the "Avançar" button
+        // in real-time. Full anti-spam validation runs on click.
+        const isStepFilled = (index) => {
+          const input = getStepInput(index);
+          if (!input) return true;
+          if (!stepIsRequired(index)) return true;
+          const value = (input.value || "").trim();
+          if (!value) return false;
+          if (input.id === "qm-whatsapp") {
+            return value.replace(/\D+/g, "").length === 11;
+          }
+          return true;
+        };
+
+        const validateCurrentStep = () => {
+          const tipo = STEP_TIPO[currentStep];
+          const input = getStepInput(currentStep);
+          const value = input ? input.value : "";
+          return validarCampo(tipo, value, {
+            required: stepIsRequired(currentStep),
+          });
+        };
+
+        const updateNextState = () => {
+          const filled = isStepFilled(currentStep);
+          qmNext.disabled = !filled;
+          const isLast = currentStep === TOTAL - 1;
+          qmNextLabel.textContent = isLast
+            ? "Enviar e seguir no WhatsApp"
+            : "Avançar";
+          // Optional field on last step: always allow advance
+          if (isLast) qmNext.disabled = isSubmitting;
+          qmBack.hidden = currentStep === 0;
+        };
+
+        const setError = (msg) => {
+          const step = steps[currentStep];
+          const errorEl = step.querySelector("[data-error]");
+          if (!errorEl) return;
+          if (msg) {
+            errorEl.textContent = msg;
+            errorEl.hidden = false;
+            step.classList.add("qual-modal__step--error");
+          } else {
+            errorEl.hidden = true;
+            errorEl.textContent = "";
+            step.classList.remove("qual-modal__step--error");
+          }
+        };
+
+        const focusCurrentStep = () => {
+          const input = getStepInput(currentStep);
+          if (input) {
+            setTimeout(() => input.focus(), 50);
+          }
+        };
+
+        const showStep = (index, direction = "forward") => {
+          if (isAnimating || index < 0 || index >= TOTAL) return;
+          isAnimating = true;
+          const current = steps[currentStep];
+          const next = steps[index];
+
+          current.dataset.state =
+            direction === "forward" ? "leaving-forward" : "leaving-back";
+
+          setTimeout(() => {
+            delete current.dataset.state;
+            next.dataset.state =
+              direction === "forward" ? "entering" : "entering-back";
+            // Force reflow for transition restart
+            void next.offsetWidth;
+            next.dataset.state = "active";
+            currentStep = index;
+            setError(null);
+            updateProgress();
+            updateNextState();
+            focusCurrentStep();
+            isAnimating = false;
+          }, 280);
+        };
+
+        const showStepImmediate = (index) => {
+          steps.forEach((s) => delete s.dataset.state);
+          if (errorStep) delete errorStep.dataset.state;
+          steps[index].dataset.state = "active";
+          currentStep = index;
+          updateProgress();
+          updateNextState();
+        };
+
+        const showErrorView = () => {
+          steps.forEach((s) => delete s.dataset.state);
+          errorStep.dataset.state = "active";
+          qmBack.hidden = true;
+          qmNext.style.display = "none";
+        };
+
+        const resetModal = () => {
+          qmForm.reset();
+          if (qmCounter) qmCounter.textContent = "0 / 300";
+          steps.forEach((s) => {
+            delete s.dataset.state;
+            s.classList.remove("qual-modal__step--error");
+            const err = s.querySelector("[data-error]");
+            if (err) {
+              err.hidden = true;
+              err.textContent = "";
+            }
+          });
+          if (errorStep) delete errorStep.dataset.state;
+          qmNext.style.display = "";
+          isSubmitting = false;
+          showStepImmediate(0);
+        };
+
+        let modalOpenedAt = null;
+
+        const STORAGE_KEY = "np_qual_modal_seen";
+
+        const markSeen = () => {
+          try {
+            sessionStorage.setItem(STORAGE_KEY, "1");
+          } catch (_) {
+            /* ignore storage errors (private mode, etc.) */
+          }
+        };
+
+        const hasBeenSeen = () => {
+          try {
+            return sessionStorage.getItem(STORAGE_KEY) === "1";
+          } catch (_) {
+            return false;
+          }
+        };
+
+        const openModal = () => {
+          markSeen();
+          modalOpenedAt = Date.now();
+          lastFocusedBeforeOpen = document.activeElement;
+          modal.setAttribute("aria-hidden", "false");
+          document.body.classList.add("qual-modal-open");
+          // Force reflow before adding is-open for transition
+          void modal.offsetWidth;
+          modal.classList.add("is-open");
+          setTimeout(() => focusCurrentStep(), 250);
+        };
+
+        const closeModal = () => {
+          modal.classList.remove("is-open");
+          setTimeout(() => {
+            modal.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("qual-modal-open");
+            resetModal();
+            if (lastFocusedBeforeOpen) lastFocusedBeforeOpen.focus();
+          }, 250);
+        };
+
+        // Phone mask
+        if (qmPhone) {
+          qmPhone.addEventListener("input", (e) => {
+            e.target.value = applyPhoneMask(e.target.value);
+            updateNextState();
+          });
+        }
+
+        // Textarea counter
+        if (qmMessage && qmCounter) {
+          qmMessage.addEventListener("input", () => {
+            qmCounter.textContent = `${qmMessage.value.length} / 300`;
+          });
+        }
+
+        // Update next button state on any input
+        qmBody.addEventListener("input", () => {
+          updateNextState();
+          setError(null);
+        });
+        qmBody.addEventListener("change", () => {
+          updateNextState();
+          setError(null);
+        });
+
+        // Submit / Next
+        qmForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          if (isAnimating || isSubmitting) return;
+
+          // Silent abort if honeypot was filled by a bot
+          if (isHoneypotTripped(qmForm)) {
+            window.location.href = buildWhatsAppUrl(
+              "Olá! Vim pelo site da NP Hub e quero conversar.",
+            );
+            return;
+          }
+
+          // Per-step anti-spam validation
+          const stepResult = validateCurrentStep();
+          if (!stepResult.valido) {
+            setError(stepResult.erro);
+            const input = getStepInput(currentStep);
+            if (input) input.focus();
+            return;
+          }
+
+          if (currentStep < TOTAL - 1) {
+            showStep(currentStep + 1, "forward");
+            return;
+          }
+
+          // Final step — last gate before submission
+          if (isTooFast(modalOpenedAt)) {
+            // Silent abort, redirect generically
+            window.location.href = buildWhatsAppUrl(
+              "Olá! Vim pelo site da NP Hub e quero conversar.",
+            );
+            return;
+          }
+
+          isSubmitting = true;
+          qmNext.disabled = true;
+          qmNextLabel.textContent = "Enviando…";
+
+          const fd = new FormData(qmForm);
+          const payload = {
+            nome: (fd.get("nome") || "").toString().trim(),
+            empresa: (fd.get("empresa") || "").toString().trim(),
+            whatsapp: (fd.get("whatsapp") || "").toString().trim(),
+            tipo: (fd.get("segmento") || "").toString().trim(),
+            investimento: (fd.get("investimento") || "").toString(),
+            mensagem: (fd.get("mensagem") || "").toString().trim(),
+          };
+
+          try {
+            const body = new FormData();
+            body.append("data", JSON.stringify(payload));
+            await fetch(SCRIPT_URL, { method: "POST", body });
+
+            const texto =
+              `Olá! Sou ${payload.nome} da ${payload.empresa}. ` +
+              `Acabei de preencher o formulário no site da NP Hub. ` +
+              `Segmento: ${payload.tipo}. ` +
+              `Quero conversar sobre marketing e estratégia.`;
+            window.location.href = buildWhatsAppUrl(texto);
+          } catch (err) {
+            isSubmitting = false;
+            showErrorView();
+          }
+        });
+
+        qmBack.addEventListener("click", () => {
+          if (currentStep > 0) showStep(currentStep - 1, "back");
+        });
+
+        if (qmFallback) {
+          qmFallback.addEventListener("click", () => {
+            window.location.href = buildWhatsAppUrl(
+              "Olá! Vim pelo site da NP Hub e quero conversar.",
+            );
+          });
+        }
+
+        // Open / close
+        openBtns.forEach((btn) => btn.addEventListener("click", openModal));
+
+        modal.addEventListener("click", (e) => {
+          if (e.target && e.target.closest("[data-qm-close]")) closeModal();
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (modal.getAttribute("aria-hidden") === "true") return;
+          if (e.key === "Escape") {
+            e.preventDefault();
+            closeModal();
+            return;
+          }
+          if (e.key === "Enter") {
+            // Allow newlines in textarea on step 6
+            const active = document.activeElement;
+            if (active && active.tagName === "TEXTAREA") return;
+            e.preventDefault();
+            qmForm.requestSubmit(qmNext);
+            return;
+          }
+          if (e.key === "Tab") {
+            // Focus trap
+            const focusable = modal.querySelectorAll(
+              'button:not([disabled]):not([hidden]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+            );
+            const visible = Array.from(focusable).filter((el) => {
+              const step = el.closest(".qual-modal__step");
+              if (step && step.dataset.state !== "active") return false;
+              return el.offsetParent !== null;
+            });
+            if (visible.length === 0) return;
+            const first = visible[0];
+            const last = visible[visible.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+              e.preventDefault();
+              last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+              e.preventDefault();
+              first.focus();
+            }
+          }
+        });
+
+        // Initialize
+        showStepImmediate(0);
+
+        // Auto-open after 60s on first visit of the session.
+        // Cancels if the user opens it manually first, or already saw it.
+        const AUTO_OPEN_DELAY = 60000;
+        if (!hasBeenSeen() && !prefersReducedMotion) {
+          const autoTimer = window.setTimeout(() => {
+            if (hasBeenSeen()) return;
+            if (modal.getAttribute("aria-hidden") === "false") return;
+            // Don't pop while the loader is still up
+            if (document.body.classList.contains("is-loading")) return;
+            openModal();
+          }, AUTO_OPEN_DELAY);
+
+          openBtns.forEach((btn) =>
+            btn.addEventListener(
+              "click",
+              () => window.clearTimeout(autoTimer),
+              { once: true },
+            ),
+          );
+        }
+      })();
+    </script>
+
+    <!-- Vercel Web Analytics (served automatically when deployed on Vercel) -->
+    <script>
+      window.va =
+        window.va ||
+        function () {
+          (window.vaq = window.vaq || []).push(arguments);
+        };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+  </body>
+</html>
