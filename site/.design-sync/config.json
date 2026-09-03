@@ -1,5 +1,5 @@
 {
-  "projectId": "ed702a63-7ce4-4ce5-af60-4b7026bbc293",
+  "projectId": "42b9a162-791f-4cbe-a0a5-dabb4d136630",
   "shape": "package",
   "pkg": "np-hub-site",
   "globalName": "NPHub",
@@ -26,5 +26,13 @@
     "WordReveal": "  /** Text revealed word by word on mount. */\n  text: string;\n  className?: string;\n  /** Class applied to each animated word span. */\n  wordClassName?: string;\n  /** Delay before the first word, in seconds. Default 0. */\n  delay?: number;\n  /** Per-word stagger, in seconds. Default 0.08. */\n  stagger?: number;\n  /** Element tag to render. Default \"span\". */\n  as?: \"h1\" | \"h2\" | \"h3\" | \"p\" | \"span\";\n  /** Map of lowercase word → extra className, to accent specific words. */\n  highlights?: Record<string, string>;",
     "Loader": "  /** Full-screen brand loading overlay — takes no props. Shows the NP Hub build animation, then fades out after ~1.9s. */",
     "ContactForm": "  /** No props — a self-contained contact form (nome, empresa, email, mensagem) with inline zod validation and a mock submit. */"
+  },
+  "overrides": {
+    "ContactForm": {
+      "cardMode": "column"
+    },
+    "EditorialHeader": {
+      "cardMode": "column"
+    }
   }
 }

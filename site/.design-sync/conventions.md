@@ -58,7 +58,7 @@ and the per-component `<Name>.prompt.md` for usage. Components are on
 ## One idiomatic build
 
 ```tsx
-<section className="paper-texture relative bg-cream px-8 py-24">
+<section className="paper-texture relative bg-cream px-8 py-28">
   <EditorialHeader edition="NP HUB — MÉTODO" index="Nº 001" />
   <div className="section-divider" />
   <div style={{ fontSize: "2.75rem", fontWeight: 500, lineHeight: 1.1 }}>

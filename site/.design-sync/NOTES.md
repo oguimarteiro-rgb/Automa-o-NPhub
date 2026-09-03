@@ -70,6 +70,14 @@ mode with a hand-authored barrel.
   Not a failure. Authorable later if desired, but capture would be
   nondeterministic (the timeout races the screenshot).
 
+- `[GRID_OVERFLOW]` on `ContactForm` (Form) and `EditorialHeader` (Masthead,
+  SectionCredit) - **resolved Sept 2026** by `cfg.overrides.<Name>.cardMode =
+  "column"`. Both render full-bleed editorial blocks that are wider than the
+  product's default grid cell, so the card cropped them. Column mode gives one
+  story per row at full card width. Expect a `[SPOT_CHECK]` canary on both the
+  run you add it (render churn from the deliberate layout change) - confirm the
+  sheets and move on; grades carry forward.
+
 ## Re-sync risks (what can silently go stale)
 
 - **`dtsPropsFor` is hand-written** — if component props drift in source, the
@@ -86,3 +94,48 @@ mode with a hand-authored barrel.
 - **Brand tokens/fonts were fetched from Google Fonts once.** Deterministic, but
   the fetch needs network on a fresh clone (the woff2 are committed under
   `.design-sync/fonts-src/`, so a normal re-sync does NOT re-fetch).
+
+## Environment (re-learned Sept 2026)
+
+- **Playwright's chromium gets wiped by SSD cleanups.** The package is in
+  `.ds-sync/node_modules`, but the browser binary lives in
+  `~/.cache/ms-playwright/` - outside the repo, and a prime target for the
+  `/limpar-ssd` sweep. Symptom: `[RENDER_SKIPPED]` / "Executable doesn't exist
+  at .../chrome-headless-shell". Fix: `(cd .ds-sync && npx playwright install
+  chromium)` (~115 MB). Check free space first: the SSD runs tight.
+- **Run everything from `site/`**, not the git root - `cfg.*` paths are
+  package-relative (see Setup facts). The driver line that works here:
+  `node .ds-sync/resync.mjs --config .design-sync/config.json --node-modules
+  ./node_modules --out ./ds-bundle --remote .design-sync/.cache/remote-sync.json`
+  (no `--entry` - `cfg.entry` is the hand-authored barrel).
+- **Run `.design-sync/build-css.mjs` before the driver.** The driver does not
+  compile Tailwind; a stale `.cache/compiled.css` silently ships old styling.
+
+## Conventions header drift (checked Sept 2026)
+
+Every class, token and component named in `conventions.md` was re-verified
+against the fresh `_ds_bundle.css`. One miss, now fixed: the idiomatic snippet
+used **`py-24`, which the Tailwind JIT never emits** (the app doesn't use it).
+Changed to `py-28`, which does exist. Emitted vertical padding is only
+`py-3/4/5/8/10/28`; `px-6/8/9`. When editing the snippet, grep the compiled CSS
+before naming a spacing class - the design agent copies that snippet verbatim.
+
+## History
+
+- **The original project was DELETED (found Sept 3, 2026).** The pinned
+  `projectId` `ed702a63-7ce4-4ce5-af60-4b7026bbc293` returned HTTP 404
+  `project not found`. The two projects left on the account were unrelated
+  ("Design System" - a piano-nav/telas one-page kit; "Viretto - Design System").
+  Recovered by creating a fresh project, **`42b9a162-791f-4cbe-a0a5-dabb4d136630`**
+  ("NP Hub Design System"), now pinned in config.json. Lesson for the next run:
+  a 404 on the pinned id is not a bug to retry - list the projects, confirm none
+  of them is this DS, and create a new one rather than uploading into a stranger's
+  project.
+
+- **The July 2026 sync never finished uploading.** It built `WordReveal`'s update
+  locally but died before `write_files`, leaving the project anchored to the older
+  render (`b88ad5f2eff42bb0` remote vs `584547e77bea1b40` on disk) and
+  `_ds_needs_recompile` armed. That is the documented safe state - the Sept re-sync
+  diffed it correctly and picked the work back up. If a future run finds
+  `.resync-verdict.json` with `upload.any: true` and no matching remote change,
+  suspect the same thing rather than a build problem.
