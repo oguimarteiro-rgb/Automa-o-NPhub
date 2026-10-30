@@ -29,6 +29,7 @@ e estiverem preenchidos):
 1. `_memoria/empresa.md` — quem é o usuário, o que faz, como funciona o negócio
 2. `_memoria/preferencias.md` — tom de voz, estilo de escrita, o que evitar
 3. `_memoria/estrategia.md` — foco atual, prioridades, prazos
+4. `_memoria/processos.md` — rotina semanal, papéis da equipe, fluxo no Trello/Hub e organização padrão do Google Drive (`NP-Hub:` em `/home/oguim/GoogleDrive-NPHub`)
 
 Usar essas informações como base pra qualquer resposta ou decisão. Ao
 sugerir prioridades, formatos ou abordagens, considerar o foco atual
